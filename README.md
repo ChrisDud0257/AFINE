@@ -10,12 +10,11 @@ Relaxing the Perfect Reference Quality Assumption** <br>
 
 
 
-# 1.Introduction about A-FINE
+## Introduction
 
 
 
-
-# 2.Quick Inference for A-FINE
+## Quick Start for A-FINE
 
 
 
