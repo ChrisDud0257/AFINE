@@ -12,6 +12,17 @@ from utils.network_archs import AFINEQhead, AFINEDhead, AFINENLM_NR_Fit, AFINENL
 from CLIP_ReturnFea import clip
 from utils.img_utils import imfromfile, img2tensor
 
+def scale_finalscore(score, yita1 = 100, yita2 = 0, yita3 = -1.9710, yita4 = -2.3734):
+
+    exp_pow = -1 * (score - yita3) / (math.fabs(yita4) + 1e-10)
+    if exp_pow >=10:
+        scale_score = (yita1 - yita2) * torch.exp(-1 * exp_pow) / (1 + torch.exp(-1 * exp_pow)) + yita2
+    else:
+        scale_score = (yita1 - yita2) / (1 + torch.exp(exp_pow)) + yita2
+
+    # scale_score = (yita1 - yita2) / (1 + math.exp(-1 * (score - yita3) / (np.abs(yita4)))) + yita2
+    return scale_score
+
 def main(args):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     mean = (0.48145466, 0.4578275, 0.40821073)
@@ -82,7 +93,7 @@ def main(args):
 
     # Compute A-FINE scores
     # Please note that, for all terms, including the final A-FINE score, the A-FINE fidelity/naturalness term, lower values indicate better quality
-    # Please use 'afine_all' value to indicate the final Full-reference score for (dis, ref)
+    # Please use 'afine_all_scale' value to indicate the final Full-reference score for (dis, ref)
     with torch.no_grad():
         cls_dis, feat_dis = clip_model.encode_image(dis)
         cls_ref, feat_ref = clip_model.encode_image(ref)
@@ -96,7 +107,10 @@ def main(args):
 
         afine_all = adapter(natural_dis_scale, natural_ref_scale, fidelity_disref_scale)
 
-        print(f"A-FINE score is {afine_all.item():.4f},\n" 
+        afine_all_scale = scale_finalscore(score = afine_all)
+
+        print(f"A-FINE scaled score is {afine_all_scale.item():.4f},\n" 
+              f"A-FINE score is {afine_all.item():.4f},\n" 
               f"A-FINE fidelity term is {fidelity_disref_scale.item():.4f},\n"
               f"A-FINE naturalness term for distortion image is {natural_dis_scale.item():.4f},\n"
               f"A-FINE naturalness term for reference image is {natural_ref_scale.item():.4f}")
@@ -115,9 +129,9 @@ if __name__ == '__main__':
         type=str,
         default= '/home/notebook/code/personal/S9053766/chendu/myprojects/SDIQA/scripts/merge_pth/afine.pth')
     ###!!!Note that, you should not exchange distortion image path with reference image path, since A-FINE(dis, ref)!=A-FINE(ref, dis)
-    parser.add_argument('--dis_img_path', type = str, default = '../figures/online20_RealESRNetx4.png',
+    parser.add_argument('--dis_img_path', type = str, default = '/home/notebook/data/group/chendu/dataset/SR-Testing-Dataset/The4thRound/SR-Testing-Dataset-200/images/RealESRNetx4/online20_RealESRNetx4.png', 
                         help = 'input the distortion image path')
-    parser.add_argument('--ref_img_path', type = str, default = '../figures/online20_Original.png',
+    parser.add_argument('--ref_img_path', type = str, default = '/home/notebook/data/group/chendu/dataset/SR-Testing-Dataset/The4thRound/SR-Testing-Dataset-200/images/Original/online20_Original.png',
                         help = 'input the reference image path')
     ###!!!Note that, you should not exchange distortion image path with reference image path, since A-FINE(dis, ref)!=A-FINE(ref, dis)
     args = parser.parse_args()

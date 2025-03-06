@@ -139,7 +139,15 @@ class AFINENLM_NR_Fit(nn.Module):
 
     def forward(self, x):
         # print(f"For NR, self.yita3 is {self.yita3}, self.yita4 is {self.yita4}")
-        d_hat = (self.yita1 - self.yita2) / (1 + torch.exp(-1 * (x - self.yita3) / (torch.abs(self.yita4) + 1e-10))) + self.yita2
+        # d_hat = (self.yita1 - self.yita2) / (1 + torch.exp(-1 * (x - self.yita3) / (torch.abs(self.yita4) + 1e-10))) + self.yita2
+
+        exp_pow = -1 * (x - self.yita3) / (torch.abs(self.yita4) + 1e-10)
+
+        if exp_pow >=10:
+            d_hat = (self.yita1 - self.yita2) * torch.exp(-1 * exp_pow) / (1 + torch.exp(-1 * exp_pow)) + self.yita2
+        else:
+            d_hat = (self.yita1 - self.yita2) / (1 + torch.exp(exp_pow)) + self.yita2
+
         return d_hat
 
 
@@ -160,7 +168,15 @@ class AFINENLM_FR_Fit_with_limit(nn.Module):
         yita3_ = torch.clamp(self.yita3, self.yita3_lower, self.yita3_upper)
         yita4_ = torch.clamp(self.yita4, self.yita4_lower, self.yita4_upper)
         # print(f"For FR, self.yita3 is {self.yita3}, yita3 is {yita3_}, self.yita4 is {self.yita4}, yita4 is {yita4_}")
-        d_hat = (self.yita1 - self.yita2) / (1 + torch.exp(-1 * (x - yita3_) / (torch.abs(yita4_) + 1e-10))) + self.yita2
+        # d_hat = (self.yita1 - self.yita2) / (1 + torch.exp(-1 * (x - yita3_) / (torch.abs(yita4_) + 1e-10))) + self.yita2
+
+        exp_pow = -1 * (x - yita3_) / (torch.abs(yita4_) + 1e-10)
+
+        if exp_pow >=10:
+            d_hat = (self.yita1 - self.yita2) * torch.exp(-1 * exp_pow) / (1 + torch.exp(-1 * exp_pow)) + self.yita2
+        else:
+            d_hat = (self.yita1 - self.yita2) / (1 + torch.exp(exp_pow)) + self.yita2
+
         return d_hat
 
 

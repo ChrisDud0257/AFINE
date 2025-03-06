@@ -31,8 +31,12 @@ pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https
 pip install -r requirements.txt
 ```
 
-### 2. Download the [pretrained CLIP model](https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt) and our [A-FINE model](https://drive.google.com/drive/folders/1SgcMmv-9yejHYTT8F8hGN_5Vv8hfGMmR?usp=sharing).
+### 2. Download the pretrained CLIP model and our A-FINE model.
 
+|      Model       |                                                                      Download                                                                       |
+|:----------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------:|
+| CLIP ViT-B-32.pt | [CLIP Official Page]((https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt)) |
+|    afine.pth     |                        [Google Drive](https://drive.google.com/drive/folders/1SgcMmv-9yejHYTT8F8hGN_5Vv8hfGMmR?usp=sharing)                         |
 
 ### 3. Inference
 For quick test towards any pair of images (distortion, reference), you can run the following command:
@@ -42,7 +46,10 @@ python afine.py --pretrain_CLIP_path [path to the pretrained CLIP ViT-B-32.pt] -
 --dis_img_path [path to the distortion image] --ref_img_path [path to the reference image]
 ```
 
+The **afine_all_score** in ```afine.py``` indicates the final A-FINE score.
+
 We also provide one pair of testing examples here, the [reference image](figures/online20_Original.png) and [distortion image](figures/online20_RealESRNetx4.png).
 
 Please note that, you cannnot change the path of reference image and distortion image, since A-FINE(dis, ref) != A-FINE(ref, dis).
-As for A-FINE, the lower, the better.
+
+As for the final A-FINE score, we scale it to [0, 100] to prevent numeric overflow, the lower, the better.
