@@ -33,10 +33,10 @@ pip install -r requirements.txt
 
 ### 2. Download the pretrained CLIP model and our A-FINE model.
 
-|      Model       |                                                                      Download                                                                       |
-|:----------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------:|
-| CLIP ViT-B-32.pt | [CLIP Official Page]((https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt)) |
-|    afine.pth     |                        [Google Drive](https://drive.google.com/drive/folders/1SgcMmv-9yejHYTT8F8hGN_5Vv8hfGMmR?usp=sharing)                         |
+|      Model       |                                                               Download                                                                |
+|:----------------:|:-------------------------------------------------------------------------------------------------------------------------------------:|
+| CLIP ViT-B-32.pt | [OPENAI](https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt) |
+|    afine.pth     |                 [Google Drive](https://drive.google.com/drive/folders/1SgcMmv-9yejHYTT8F8hGN_5Vv8hfGMmR?usp=sharing)                  |
 
 ### 3. Inference
 For quick test towards any pair of images (distortion, reference), you can run the following command:
