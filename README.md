@@ -46,10 +46,10 @@ python afine.py --pretrain_CLIP_path [path to the pretrained CLIP ViT-B-32.pt] -
 --dis_img_path [path to the distortion image] --ref_img_path [path to the reference image]
 ```
 
-The **afine_all_score** in ```afine.py``` indicates the final A-FINE score.
+The **afine_all_scale** in ```afine.py``` indicates the final A-FINE score.
 
 We also provide one pair of testing examples here, the [reference image](figures/online20_Original.png) and [distortion image](figures/online20_RealESRNetx4.png).
 
 Please note that, you cannnot change the path of reference image and distortion image, since A-FINE(dis, ref) != A-FINE(ref, dis).
 
-As for the final A-FINE score, we scale it to [0, 100] to prevent numeric overflow, the lower, the better.
+**As for the final A-FINE score, we scale it to [0, 100] to prevent numeric overflow. The lower A-FINE score indicates the better quality.**
