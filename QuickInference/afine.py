@@ -117,7 +117,6 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser = argparse.ArgumentParser()
     ### Please download the pretrained CLIP ViT-B-32.pt from their official repo: https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt
     parser.add_argument(
         '--pretrain_CLIP_path',
