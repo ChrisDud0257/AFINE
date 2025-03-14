@@ -84,8 +84,6 @@ python afine.py --pretrain_CLIP_path [path to the pretrained CLIP ViT-B-32.pt] -
 
 ### 4.Explanations about the final A-FINE score
 
-
-
 In very few cases, the reference image is of poor quality, while the distortion image has much 
 better quality, then $D(dis, ref)$ will be a considerable negative value. To prevent from numeric overflow, we utilize a non-linear mapping
 function to scale it to (0, 100):
@@ -104,7 +102,9 @@ We also provide one pair of testing examples here, the [reference image](figures
 
 Please note that, you cannnot change the path of reference image and distortion image, since A-FINE is an asymmetric FR-IQA model.
 
-$$D(dis, ref) \neq D(ref, dis)$$.
+$$
+D(dis, ref) \neq D(ref, dis)
+$$.
 
 
 
