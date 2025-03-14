@@ -98,7 +98,8 @@ function to scale it to $D(dis, ref)_{s} \in (0, 100)$.
 The lower $D(dis, ref)_{s}$ value, the better quality.
 
 As for the final output, in [afine.py](QuickInference/afine.py), the **afine_all** indicates $D(dis, ref)$, while **afine_all_scale**
-indicates $D(dis, ref)_{s}$. You could choose either one of them. But we strongly recommend to use **afine_all_scale** to prevent from numerical overflow.
+indicates $D(dis, ref)_{s}$. You could choose either one of them. If you use A-FINE in your publication, please specific which version
+(scaled or not) you are using.
 
 We also provide one pair of testing examples here, the [reference image](figures/online20_Original.png) and [distortion image](figures/online20_RealESRNetx4.png).
 

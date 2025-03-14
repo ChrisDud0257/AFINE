@@ -93,7 +93,7 @@ def main(args):
 
     # Compute A-FINE scores
     # Please note that, for all terms, including the final A-FINE score, the A-FINE fidelity/naturalness term, lower values indicate better quality
-    # To prevent from numerical overflow, we recommend you to use 'afine_all_scale' value to indicate the final scaled Full-reference score for (dis, ref)
+    # To prevent from numerical overflow, we use 'afine_all_scale' value to indicate the final scaled Full-reference score for (dis, ref)
     with torch.no_grad():
         cls_dis, feat_dis = clip_model.encode_image(dis)
         cls_ref, feat_ref = clip_model.encode_image(ref)
