@@ -75,7 +75,7 @@ def main(args):
     ref = ref.unsqueeze(0)
     ref = ref.to(device)
 
-    # The height and weight of all the images must be divisible by 32, since we utilize the pretrained CLIP ViT-B-32 model
+    # The height and width of all the images must be divisible by 32, since we utilize the pretrained CLIP ViT-B-32 model
     _,c,h,w = dis.shape
     if h % 32 != 0:
         pad_h = 32 - h % 32
