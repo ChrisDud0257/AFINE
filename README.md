@@ -104,7 +104,7 @@ Please note that, you cannnot change the path of reference image and distortion 
 
 $$
 D(dis, ref) \neq D(ref, dis)
-$$.
+$$
 
 
 
