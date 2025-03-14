@@ -86,17 +86,14 @@ python afine.py --pretrain_CLIP_path [path to the pretrained CLIP ViT-B-32.pt] -
 
 In very few cases, the reference image is of poor quality, while the distortion image has much 
 better quality, then $D(dis, ref)$ will be a considerable negative value. To prevent from numeric overflow, we utilize a non-linear mapping
-function to scale it to (0, 100):
+function to scale it to $D(dis, ref)_{s} \in (0, 100)$.
 
 
 
-
-
-where $\eta_{3}$ and $\eta_{4}$ are hand-crafted hyperparameters. $D(dis, ref)_{scale} \in (0,100)$.
 The lower $D(dis, ref)_{s}$ value, the better quality.
 
 As for the final output, in [afine.py](QuickInference/afine.py), the **afine_all** indicates $D(dis, ref)$, while **afine_all_scale**
-indicates $D(dis, ref)_{scale}$. You could choose either one of them. But we strongly recommend to use **afine_all_scale** to prevent from numerical overflow.
+indicates $D(dis, ref)_{s}$. You could choose either one of them. But we strongly recommend to use **afine_all_scale** to prevent from numerical overflow.
 
 We also provide one pair of testing examples here, the [reference image](figures/online20_Original.png) and [distortion image](figures/online20_RealESRNetx4.png).
 
