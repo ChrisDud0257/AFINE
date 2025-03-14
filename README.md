@@ -93,7 +93,7 @@ function to scale it to (0, 100):
 
 
 where $\eta_{3}$ and $\eta_{4}$ are hand-crafted hyperparameters. $D(dis, ref)_{scale} \in (0,100)$.
-The lower $D(dis, ref)_{scale}$ value, the better quality.
+The lower $D(dis, ref)_{s}$ value, the better quality.
 
 As for the final output, in [afine.py](QuickInference/afine.py), the **afine_all** indicates $D(dis, ref)$, while **afine_all_scale**
 indicates $D(dis, ref)_{scale}$. You could choose either one of them. But we strongly recommend to use **afine_all_scale** to prevent from numerical overflow.
