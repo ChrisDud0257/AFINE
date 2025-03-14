@@ -33,11 +33,11 @@ def main(args):
     finetuned_clip_checkpoint = torch.load(args.afine_path, map_location = 'cpu')['finetuned_clip']
     clip_model.load_state_dict(finetuned_clip_checkpoint)
     clip_model = clip_model.to(device)
-    # load fidelity term
+    # load naturalness term
     net_qhead = AFINEQhead()
     net_qhead.load_state_dict(torch.load(args.afine_path, map_location = 'cpu')['natural'], strict=True)
     net_qhead = net_qhead.to(device)
-    # load neturalness term
+    # load fidelity term
     net_dhead = AFINEDhead()
     net_dhead.load_state_dict(torch.load(args.afine_path, map_location = 'cpu')['fidelity'], strict=True)
     net_dhead = net_dhead.to(device)
@@ -75,7 +75,7 @@ def main(args):
     ref = ref.unsqueeze(0)
     ref = ref.to(device)
 
-    # all images must be divided by 32
+    # The height and weight of all the images must be divisible by 32, since we utilize the pretrained CLIP ViT-B-32 model
     _,c,h,w = dis.shape
     if h % 32 != 0:
         pad_h = 32 - h % 32
