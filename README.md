@@ -89,9 +89,11 @@ python afine.py --pretrain_CLIP_path [path to the pretrained CLIP ViT-B-32.pt] -
 In very few cases, the reference image is of poor quality, while the distortion image has much 
 better quality, then $D(dis, ref)$ will be a considerable negative value. To prevent from numeric overflow, we utilize a non-linear mapping
 function to scale it to (0, 100):
+
 $$
 D(dis, ref)_{scale} = \frac{100}{1 + exp(-\frac{D(dis, ref) - \eta_{3}}{|\eta_{4}|})}
 $$
+
 where $\eta_{3}$ and $\eta_{4}$ are hand-crafted hyperparameters. $D(dis, ref)_{scale} \in (0, 100)$.
 The lower $D(dis, ref)_{scale}$ value, the better quality.
 
@@ -101,6 +103,7 @@ indicates $D(dis, ref)_{scale}$. You could choose either one of them. But we str
 We also provide one pair of testing examples here, the [reference image](figures/online20_Original.png) and [distortion image](figures/online20_RealESRNetx4.png).
 
 Please note that, you cannnot change the path of reference image and distortion image, since A-FINE is an asymmetric FR-IQA model.
+
 $$D(dis, ref) \neq D(ref, dis)$$.
 
 
