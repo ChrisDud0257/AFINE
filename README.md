@@ -9,6 +9,10 @@ Relaxing the Perfect Reference Quality Assumption** <br>
 > [Du CHEN\*](https://github.com/ChrisDud0257), [Tianhe WU\*](https://github.com/TianheWu), [Kede MA](https://kedema.org/) and [Lei ZHANG](https://www4.comp.polyu.edu.hk/~cslzhang/). <br>
 Accepted by CVPR 2025
 
+## ⚡ TODO
+- [ ] Release DiffIQA dataset.
+- [ ] Release the inference code and pretrained model of the Diffusion-based Enhancer.
+- [ ] Release the training code of A-FINE.
 
 ## :blush: Introduction
 
