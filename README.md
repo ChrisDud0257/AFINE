@@ -231,7 +231,7 @@ This project is released under the Apache 2.0 license.
 ## 🌏 Citation
 
 ```bash
-@InProceedings{Chen2025CVPR,
+@InProceedings{Chen2025toward,
     author    = {Chen, Du and Wu, Tianhe and Ma, Kede and Zhang, Lei},
     title     = {Toward Generalized Image Quality Assessment: Relaxing the Perfect Reference Quality Assumption},
     booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
