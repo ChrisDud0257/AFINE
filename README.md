@@ -220,6 +220,29 @@ The comparative results in SRIQA-Bench may not adequately reflect the performanc
 
 (1). Limited Test Coverage: We only use 100 low-resolution (LR) images, which cannot fully cover diverse testing scenarios.
 
-(2)Self-Defined Degradation Parameters: The blind degradation parameters (e.g., blur, noise, downscaling) are independently set by us, potentially introducing bias.
+(2). Self-Defined Degradation Parameters: The blind degradation parameters (e.g., blur, noise, downscaling) are independently set by us, potentially introducing bias.
 
 Given this, we have no intention of comparing SR models' performance. We hope the Mean Opinion Score (MOS) results from SRIQA-Bench will not be misinterpreted as an evaluation of SR models themselves.
+
+
+## 📜 License 
+This project is released under the Apache 2.0 license.
+
+## 🌏 Citation
+
+```bash
+@InProceedings{Chen2025CVPR,
+    author    = {Chen, Du and Wu, Tianhe and Ma, Kede and Zhang, Lei},
+    title     = {Toward Generalized Image Quality Assessment: Relaxing the Perfect Reference Quality Assumption},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    year      = {2025}
+}
+```
+
+## 📜 Acknowledgement
+
+This project is built mainly based on the excellent [BasicSR](https://github.com/XPixelGroup/BasicSR), [CLIP](https://github.com/openai/CLIP) and [PASD](https://github.com/yangxy/PASD) codeframe. We appreciate it a lot for their developers.
+
+## 📧 Contact
+
+If you have any questions or suggestions about this project, please contact me at ```csdud.chen@connect.polyu.hk``` .
