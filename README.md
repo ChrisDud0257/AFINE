@@ -2,12 +2,12 @@
 Official PyTorch code for our Paper "Toward Generalized Image Quality Assessment:
 Relaxing the Perfect Reference Quality Assumption" in CVPR 2025.
 
-### [Paper and Supplementary (Arxiv Version)](https://arxiv.org/)
+### [Paper and Supplementary (Arxiv Version)](https://arxiv.org/pdf/2503.11221)
 
 > **Toward Generalized Image Quality Assessment:
 Relaxing the Perfect Reference Quality Assumption** <br>
 > [Du CHEN\*](https://github.com/ChrisDud0257), [Tianhe WU\*](https://github.com/TianheWu), [Kede MA](https://kedema.org/) and [Lei ZHANG](https://www4.comp.polyu.edu.hk/~cslzhang/). <br>
-
+Accepted by CVPR 2025
 
 
 ## :blush: Introduction
@@ -114,9 +114,108 @@ We also provide one pair of testing examples here, the [reference image](figures
 Please note that, you cannnot change the path of reference image and distortion image, since A-FINE is an asymmetric FR-IQA model:
 
 $$
-D(ref, dis) \neq D(ref, dis)
+D(ref, dis) \neq D(dis, ref)
 $$
 
 
+## 📁 SRIQA-Bench
+
+### 1.Download
+
+| Dataset |                                                 Link                                                 |
+|:-------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
+|SRIQA-Bench| [Google Drive](https://drive.google.com/drive/folders/1oRNyjHvjpop2OhurebdFuvisbpys2DRP?usp=sharing) |
 
 
+### 2.Preliminary
+
+We first compiled $100$ original images covering a wide range of natural scenes and subjected them to common
+[Real-ESRGAN degradations](https://github.com/xinntao/Real-ESRGAN) and [BSRGAN degradations](https://github.com/cszn/BSRGAN) to generate
+low-resolution (LR) images. We then adopted two regression-based SR methods and eight generative-based (GAN-based/Diffusion-based) models which are 
+trained under blind degradations to produce SR results for each LR input:
+ 
+
+|                                                                                    Regression-based                                                                                     |                                                                                      GAN-based                                                                                      |                                                                          Diffusion-based                                                                          |
+|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|                     [SwinIR](https://openaccess.thecvf.com/content/ICCV2021W/AIM/papers/Liang_SwinIR_Image_Restoration_Using_Swin_Transformer_ICCVW_2021_paper.pdf)                     | [Real-ESRGAN](https://openaccess.thecvf.com/content/ICCV2021W/AIM/papers/Wang_Real-ESRGAN_Training_Real-World_Blind_Super-Resolution_With_Pure_Synthetic_Data_ICCVW_2021_paper.pdf) |                                             [StableSR](https://link.springer.com/article/10.1007/s11263-024-02168-7)                                              |
+| [RealESRNet/RRDB](https://openaccess.thecvf.com/content/ICCV2021W/AIM/papers/Wang_Real-ESRGAN_Training_Real-World_Blind_Super-Resolution_With_Pure_Synthetic_Data_ICCVW_2021_paper.pdf) |       [BSRGAN](https://openaccess.thecvf.com/content/ICCV2021/papers/Zhang_Designing_a_Practical_Degradation_Model_for_Deep_Blind_Image_Super-Resolution_ICCV_2021_paper.pdf)       | [SUPIR](https://openaccess.thecvf.com/content/CVPR2024/papers/Yu_Scaling_Up_to_Excellence_Practicing_Model_Scaling_for_Photo-Realistic_Image_CVPR_2024_paper.pdf) |
+|                                                                                                                                                                                         |           [HGGT](https://openaccess.thecvf.com/content/CVPR2023/html/Chen_Human_Guided_Ground-Truth_Generation_for_Realistic_Image_Super-Resolution_CVPR_2023_paper.html)           |       [SeeSR](https://openaccess.thecvf.com/content/CVPR2024/html/Wu_SeeSR_Towards_Semantics-Aware_Real-World_Image_Super-Resolution_CVPR_2024_paper.html)        |
+|                                                                                                                                                                                         |                                                                                                                                                                                     |       [SinSR](https://openaccess.thecvf.com/content/CVPR2024/html/Wang_SinSR_Diffusion-Based_Image_Super-Resolution_in_a_Single_Step_CVPR_2024_paper.html)        |
+|                                                                                                                                                                                         |                                                                                                                                                                                     |                    [OSEDiff](https://proceedings.neurips.cc/paper_files/paper/2024/file/a8223b0ad64007423ffb308b0dd92298-Paper-Conference.pdf)                    |
+
+For the images with same contents, we ask ten people to rate their visual quality through a complete paired comparison,
+resulting in $C_{11}^{2}=55$ comparisons. The image with same contents contains the original reference image (ground truth) 
+and ten SR images. The software randomly selects two different images from 11 each time without repetition and display them
+on the screen. Finally, we obtain $55000$ comparison results. For the total $1100$ images, we compute the MOS score for each image, including the 
+original reference image.
+
+|           Type           |Number|
+|:------------------------:|:---:|
+| Original reference image |100|
+|        SR images         |1000|
+|       Total images       |1100|
+|    Human comparisons     |55000|
+|        MOS scores        |1100|
+
+### 3.Data structure
+The data structure of SRIQA-Bench is as follows:
+```
+SRIQA-Bench
+├── LRImages
+│   ├── x1_Original.png
+│   ├── x2_Original.png
+│   ├── x3_Original.png
+│   ├── ...
+│   └── x100_Original.png
+├── TestImages
+│   ├── SwinIR
+│   │   ├── x1_SwinIRx4.png
+│   │   ├── x2_SwinIRx4.png
+│   │   ├── x3_SwinIRx4.png
+│   │   ├──...
+│   │   └── x100_SwinIRx4.png
+│   ├── RealESRNet
+│   │   ├── x1_RealESRNetx4.png
+│   │   ├── x2_RealESRNetx4.png
+│   │   ├── x3_RealESRNetx4.png
+│   │   ├──...
+│   │   └── x100_RealESRNetx4.png
+│── MOS
+│   ├── x1.txt
+│   ├── x2.txt
+│   ├── x3.txt
+│   ├──...
+│   └── x100.txt
+```
+
+where ```x1``` to ```x100``` represent the name of different images. 
+For each comparison group towards the $11$ images with the same contents, we record their MOS scores 
+in ```x1.txt``` to ```x100.txt```.
+
+**The MOS score is varied in $(0, 100)$, the higher, the better.**
+
+
+
+### 4.Other Declarations
+
+**Copyright, License and Agreement for the SRIQA-Bench dataset Usage**
+
+1. Please note that this dataset is made available for non-commercial academic research purposes ONLY.
+2. You agree not to reproduce, duplicate, copy, sell, trade, resell or exploit for any commercial purposes, any portion of the images and any portion of derived data.
+3. You agree not to further copy, publish or distribute any portion of the SRIQA-Bench dataset. Except, for internal use at a single site within the same organization it is allowed to make copies of the dataset.
+4. The image contents are released upon request for research purposes ONLY.
+5. Any violation of this protocol will be at his own risk. If any of the images include your information and you would like to remove them, please kindly inform us, and we will remove them from our dataset immediately.
+
+**Towards the MOS scores for different methods**
+
+Please note that, since every pretrained SR models are trained under different degradation conditions, some with weak degradation factors (such as HGGT), some with strong degradation factors (such as RealESRGAN),
+and we just generate LR images just with our own settings, then the final MOS scores just indicate the quality of the generated SR images under this specific situations.
+
+The primary purpose of establishing SRIQA-Bench is to evaluate the performance of different Full-Reference Image Quality Assessment (FR-IQA) methods, rather than to compare the superiority or inferiority of different SR models. 
+The comparative results in SRIQA-Bench may not adequately reflect the performance differences between different SR models as follows:
+
+(1). Limited Test Coverage: We only use 100 low-resolution (LR) images, which cannot fully cover diverse testing scenarios.
+
+(2)Self-Defined Degradation Parameters: The blind degradation parameters (e.g., blur, noise, downscaling) are independently set by us, potentially introducing bias.
+
+Given this, we have no intention of comparing SR models' performance. We hope the Mean Opinion Score (MOS) results from SRIQA-Bench will not be misinterpreted as an evaluation of SR models themselves.
