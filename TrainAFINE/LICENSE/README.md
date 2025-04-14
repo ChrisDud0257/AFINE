@@ -8,7 +8,7 @@ We utilize and modify some codes from the repositories as follows,
   - The codes are modified from the repository [BasicSR](https://github.com/XPixelGroup/BasicSR). Here is the [license](LICENSE-BasicSR) of BasicSR.
   - The official repository is <https://github.com/XPixelGroup/BasicSR>.
 - CLIP
-  - The codes are modified from the repository [CLIP](https://github.com/openai/CLIP). Here is the [license](LICENSE-CLIP) of BasicSR.
+  - The codes are modified from the repository [CLIP](https://github.com/openai/CLIP). Here is the [license](LICENSE-CLIP) of CLIP.
   - The official repository is <https://github.com/openai/CLIP>.
 
 
