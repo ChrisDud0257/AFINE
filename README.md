@@ -26,7 +26,7 @@ All of the pretrained models, datasets could be accessed by the following link,
 |:--:|:--:|
 |A-FINE|[Google Drive](https://drive.google.com/drive/folders/14cDC0xUOdABMkV_wsDupn6rFePJslGun?usp=drive_link)|
 
-As for each parts in the download link, we will give detailed descriptions about what they are and how to use them.
+As for each part in the download link, we will give detailed descriptions about what they are and how to use them.
 
 
 ## ⚡ TODO
@@ -286,7 +286,7 @@ SRIQA-Bench
 ```
 
 
-Note that, your computaion results of MOS might be a slightly differen from us, since the MOS scores are derived using a convex optimization progress, but this is not a problem since the difference in results is very small. However, we still strongly recommand you to direcrly use the MOS scores provided by us.
+Note that, your computaion results of MOS might be a slightly different from us, since the MOS scores are derived using a convex optimization progress, but this is not a problem since the difference in results is very small. However, we still strongly recommand you to direcrly use the MOS scores provided by us.
 
 
 **The MOS score is varied in $(0, 100)$, the higher, the better.**
