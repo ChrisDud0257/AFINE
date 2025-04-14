@@ -1,0 +1,177 @@
+name: AFINE_stage1_nlogn
+model_type: AFINEStage1Model
+num_gpu: auto  # set num_gpu: 0 for cpu mode
+manual_seed: 0
+
+nr_compute: 'feat'
+
+datasets:
+  test_1:
+    name: SRIQA-Bench-All
+    type: SRIQADataset
+    all_img_path: /home/notebook/data/group/chendu/dataset/SRIQA-Bench/images
+    all_score_path: /home/notebook/data/group/chendu/dataset/SRIQA-Bench/MOS
+    io_backend:
+      type: disk
+    use_hflip: false
+    use_rot: false
+    mean: [0.48145466, 0.4578275, 0.40821073]
+    std: [0.26862954, 0.26130258, 0.27577711]
+
+  test_2:
+    name: DiffIQA-Test-PSY
+    type: DiffIQADataset
+    all_img_path: /home/notebook/data/group/chendu/dataset/SDIQA-dataset/DiffIQA/Test/images
+    ThreeAFC_list_path: /home/notebook/data/group/chendu/dataset/SDIQA-dataset/DiffIQA/Test/TripletEachType/PSY.txt
+    io_backend:
+      type: disk
+    use_hflip: false
+    use_rot: false
+    mean: [0.48145466, 0.4578275, 0.40821073]
+    std: [0.26862954, 0.26130258, 0.27577711]
+
+  test_3:
+    name: DiffIQA-Test-PNY
+    type: DiffIQADataset
+    all_img_path: /home/notebook/data/group/chendu/dataset/DiffIQA/Test/images
+    ThreeAFC_list_path: /home/notebook/data/group/chendu/dataset/DiffIQA/Test/TripletEachType/PNY.txt
+    io_backend:
+      type: disk
+    use_hflip: false
+    use_rot: false
+    mean: [0.48145466, 0.4578275, 0.40821073]
+    std: [0.26862954, 0.26130258, 0.27577711]
+
+  test_4:
+    name: DiffIQA-Test-SNY
+    type: DiffIQADataset
+    all_img_path: /home/notebook/data/group/chendu/dataset/DiffIQA/Test/images
+    ThreeAFC_list_path: /home/notebook/data/group/chendu/dataset/DiffIQA/Test/TripletEachType/SNY.txt
+    io_backend:
+      type: disk
+    use_hflip: false
+    use_rot: false
+    mean: [0.48145466, 0.4578275, 0.40821073]
+    std: [0.26862954, 0.26130258, 0.27577711]
+
+  test_5:
+    name: DiffIQA-Test-PYY
+    type: DiffIQADataset
+    all_img_path: /home/notebook/data/group/chendu/dataset/DiffIQA/Test/images
+    ThreeAFC_list_path: /home/notebook/data/group/chendu/dataset/DiffIQA/Test/TripletEachType/PYY.txt
+    io_backend:
+      type: disk
+    use_hflip: false
+    use_rot: false
+    mean: [0.48145466, 0.4578275, 0.40821073]
+    std: [0.26862954, 0.26130258, 0.27577711]
+
+  test_6:
+    name: DiffIQA-Test-NYY
+    type: DiffIQADataset
+    all_img_path: /home/notebook/data/group/chendu/dataset/DiffIQA/Test/images
+    ThreeAFC_list_path: /home/notebook/data/group/chendu/dataset/DiffIQA/Test/TripletEachType/NYY.txt
+    io_backend:
+      type: disk
+    use_hflip: false
+    use_rot: false
+    mean: [0.48145466, 0.4578275, 0.40821073]
+    std: [0.26862954, 0.26130258, 0.27577711]
+
+  test_7:
+    name: KADID10K
+    type: TraditionalIQADataset
+    all_img_path: /home/notebook/data/group/chendu/dataset/IQA/KADID10K/images
+    ThreeAFC_list_path: /home/notebook/data/group/chendu/dataset/IQA/KADID10K/Test/Triplet/Triplet.txt
+    io_backend:
+      type: disk
+    use_hflip: false
+    use_rot: false
+    mean: [0.48145466, 0.4578275, 0.40821073]
+    std: [0.26862954, 0.26130258, 0.27577711]
+
+  test_8:
+    name: TID2013
+    type: TraditionalIQADataset
+    all_img_path: /home/notebook/data/group/chendu/dataset/IQA/TID2013/images
+    ThreeAFC_list_path: /home/notebook/data/group/chendu/dataset/IQA/TID2013/Test/Triplet/Triplet.txt
+    io_backend:
+      type: disk
+    use_hflip: false
+    use_rot: false
+    mean: [0.48145466, 0.4578275, 0.40821073]
+    std: [0.26862954, 0.26130258, 0.27577711]
+
+  test_9:
+    name: PIPAL
+    type: TraditionalIQADataset
+    all_img_path: /home/notebook/data/group/chendu/dataset/IQA/PIPAL/images
+    ThreeAFC_list_path: /home/notebook/data/group/chendu/dataset/IQA/PIPAL/Test/Triplet/Triplet.txt
+    io_backend:
+      type: disk
+    use_hflip: false
+    use_rot: false
+    mean: [0.48145466, 0.4578275, 0.40821073]
+    std: [0.26862954, 0.26130258, 0.27577711]
+
+
+  test_10:
+    name: SRIQA-Bench-Regression
+    type: SRIQADataset
+    all_img_path: /home/notebook/data/group/chendu/dataset/SRIQA-Bench/images
+    all_score_path: /home/notebook/data/group/chendu/dataset/SRIQA-Bench/MOS_Reg
+    io_backend:
+      type: disk
+    use_hflip: false
+    use_rot: false
+    mean: [0.48145466, 0.4578275, 0.40821073]
+    std: [0.26862954, 0.26130258, 0.27577711]
+
+  test_11:
+    name: SRIQA-Bench-Generation
+    type: SRIQADataset
+    all_img_path: /home/notebook/data/group/chendu/dataset/SRIQA-Bench/images
+    all_score_path: /home/notebook/data/group/chendu/dataset/SRIQA-Bench/MOS_Gen
+    io_backend:
+      type: disk
+    use_hflip: false
+    use_rot: false
+    mean: [0.48145466, 0.4578275, 0.40821073]
+    std: [0.26862954, 0.26130258, 0.27577711]
+
+# network structures
+network_qhead:
+  type: AFINEQhead
+  chns: [3, 768, 768, 768, 768, 768, 768, 768, 768, 768, 768, 768, 768]
+  feature_out_channel: 1
+  input_dim: 768
+  hidden_dim: 128
+  mean: [0.48145466, 0.4578275, 0.40821073]
+  std: [0.26862954, 0.26130258, 0.27577711]
+
+# path
+path:
+  pretrain_network_g: ~
+  strict_load_g: true
+  resume_state: ~
+
+path_qhead:
+  pretrain_network_qhead: experiments/pretrained_models/AFINE_stage1_nlogn/net_qhead.pth
+  strict_load_qhead: True
+  param_key_qhead: params
+
+
+path_CLIP:
+  pretrain_CLIP_path: experiments/pretrained_models/CLIP/ViT-B-32.pt
+  mode: 'finetune' # if is set to 'finetune', the should provide the finetuned CLIP model path bellow
+  finetune_CLIP_path: experiments/pretrained_models/AFINE_stage1_nlogn/clip_model.pth
+
+
+# validation settings
+val:
+  save_img: False
+
+  metrics:
+    Accuracy: # metric name, can be arbitrary
+      type: calculate_all_accuracy
+      delta: 0.0

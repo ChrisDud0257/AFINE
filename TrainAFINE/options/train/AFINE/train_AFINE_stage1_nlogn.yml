@@ -1,0 +1,148 @@
+# general settings
+name: AFINE_stage1_nlogn
+model_type: AFINEStage1Model
+num_gpu: auto  # set num_gpu: 0 for cpu mode
+manual_seed: 0
+
+nr_compute: 'feat'
+
+# dataset and data loader settings
+datasets:
+  train:
+    name: DIFFIQA-Train_TID2013_PIPAL_KADID10K_nlogn
+    type: DiffIQATraIQATrainDataset
+    all_img_path: ['/home/notebook/data/group/chendu/dataset/DiffIQA/Train/images',
+                   '/home/notebook/data/group/chendu/dataset/IQA/KADID10K/images',
+                   '/home/notebook/data/group/chendu/dataset/IQA/PIPAL/images',
+                   '/home/notebook/data/group/chendu/dataset/IQA/TID2013/images']
+    ThreeAFC_list_path: ['/home/notebook/data/group/chendu/dataset/DiffIQA/Train/trainlabel/Triplet/Triplet.txt',
+                         '/home/notebook/data/group/chendu/dataset/IQA/KADID10K/Train/Triplet/Triplet.txt',
+                         '/home/notebook/data/group/chendu/dataset/IQA/PIPAL/Train/Triplet/Triplet.txt',
+                         '/home/notebook/data/group/chendu/dataset/IQA/TID2013/Train/Triplet/Triplet.txt']
+    io_backend:
+      type: disk
+    mean: [0.48145466, 0.4578275, 0.40821073]
+    std: [0.26862954, 0.26130258, 0.27577711]
+    balance_dataset: False
+
+    use_hflip: true
+    use_rot: true
+
+    gt_size: 512
+
+    # data loader
+    num_worker_per_gpu: 2
+    batch_size_per_gpu: 32
+    dataset_enlarge_ratio: 1
+    prefetch_mode: ~
+
+  val_1:
+    name: DIFFIQA-Val_TID2013_PIPAL_KADID10K_nlogn
+    type: DiffIQATraIQAValDataset
+    all_img_path: ['/home/notebook/data/group/chendu/dataset/DiffIQA/Validation/images',
+                   '/home/notebook/data/group/chendu/dataset/IQA/KADID10K/images',
+                   '/home/notebook/data/group/chendu/dataset/IQA/PIPAL/images',
+                   '/home/notebook/data/group/chendu/dataset/IQA/TID2013/images']
+    ThreeAFC_list_path: ['/home/notebook/data/group/chendu/dataset/DiffIQA/Validation/TripletEachType/PNY.txt',
+                         '/home/notebook/data/group/chendu/dataset/IQA/KADID10K/Validation/Triplet/Triplet.txt',
+                         '/home/notebook/data/group/chendu/dataset/IQA/PIPAL/Validation/Triplet/Triplet.txt',
+                         '/home/notebook/data/group/chendu/dataset/IQA/TID2013/Validation/Triplet/Triplet.txt']
+    io_backend:
+      type: disk
+    use_hflip: false
+    use_rot: false
+    mean: [0.48145466, 0.4578275, 0.40821073]
+    std: [0.26862954, 0.26130258, 0.27577711]
+    count_percentage: 1.0
+
+
+# network structures
+network_qhead:
+  type: AFINEQhead
+  chns: [3, 768, 768, 768, 768, 768, 768, 768, 768, 768, 768, 768, 768]
+  feature_out_channel: 1
+  input_dim: 768
+  hidden_dim: 128
+  mean: [0.48145466, 0.4578275, 0.40821073]
+  std: [0.26862954, 0.26130258, 0.27577711]
+
+# path
+path:
+  pretrain_network_g: ~
+  strict_load_g: true
+  resume_state: ~
+
+path_qhead:
+  pretrain_network_qhead: ~
+  strict_load_qhead: True
+  param_key_qhead: params
+
+
+path_CLIP:
+  pretrain_CLIP_path: /home/notebook/code/personal/S9053766/chendu/myprojects/SDIQA/experiments/pretrained_models/CLIP/ViT-B-32.pt
+  mode: 'Original'
+  finetune_CLIP_path: ~
+
+
+
+# training settings
+train:
+  finetune_CLIP: True
+  optim_qhead:
+    type: AdamW
+    lr: !!float 5e-6
+    weight_decay: !!float 1e-3
+    betas: [0.9, 0.99]
+
+
+  optim_clip:
+    type: AdamW
+    lr: !!float 5e-6
+    weight_decay: !!float 1e-3
+    betas: [0.9, 0.99]
+
+  scheduler:
+    type: CosineAnnealingRestartLR
+    periods: [10000, 10000, 10000, 10000]
+    restart_weights: [1, 0.5, 0.5, 0.5]
+    eta_min: !!float 1e-8
+
+  total_iter: 40000
+  warmup_iter: -1  # no warm up
+
+  # losses
+  fidelity_nr12_opt:
+    type: FidelityLoss
+    loss_weight: 1.0
+
+  fidelity_nr1ref_opt:
+    type: FidelityLoss
+    loss_weight: 1.0
+
+  fidelity_nr2ref_opt:
+    type: FidelityLoss
+    loss_weight: 1.0
+
+# validation settings
+val:
+  val_freq: !!float 1e3
+  save_img: False
+
+  metrics:
+    Accuracy: # metric name, can be arbitrary
+      type: calculate_all_accuracy
+      delta: 0.0
+
+# logging settings
+logger:
+  print_freq: 100
+  save_checkpoint_freq: !!float 1e3
+  use_tb_logger: true
+  wandb:
+    project: ~
+    resume_id: ~
+
+# dist training settings
+dist_params:
+  backend: nccl
+  port: 29500

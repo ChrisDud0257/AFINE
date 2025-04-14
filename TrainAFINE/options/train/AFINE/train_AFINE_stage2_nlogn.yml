@@ -1,0 +1,124 @@
+# general settings
+name: AFINE_stage2_nlogn
+model_type: AFINEStage2Model
+num_gpu: auto  # set num_gpu: 0 for cpu mode
+manual_seed: 0
+
+# dataset and data loader settings
+datasets:
+  train:
+    name: TID2013_PIPAL_KADID10K_nlogn
+    type: DiffIQATraIQATrainDataset
+    all_img_path: ['/home/notebook/data/group/chendu/dataset/IQA/KADID10K/images',
+                   '/home/notebook/data/group/chendu/dataset/IQA/PIPAL/images',
+                   '/home/notebook/data/group/chendu/dataset/IQA/TID2013/images']
+    ThreeAFC_list_path: ['/home/notebook/data/group/chendu/dataset/IQA/KADID10K/Train/Triplet/Triplet.txt',
+                         '/home/notebook/data/group/chendu/dataset/IQA/PIPAL/Train/Triplet/Triplet.txt',
+                         '/home/notebook/data/group/chendu/dataset/IQA/TID2013/Train/Triplet/Triplet.txt']
+    io_backend:
+      type: disk
+    mean: [0.48145466, 0.4578275, 0.40821073]
+    std: [0.26862954, 0.26130258, 0.27577711]
+    balance_dataset: False
+
+    use_hflip: true
+    use_rot: true
+
+    gt_size: 512
+
+    # data loader
+    num_worker_per_gpu: 2
+    batch_size_per_gpu: 128
+    dataset_enlarge_ratio: 1
+    prefetch_mode: ~
+
+
+  val_1:
+    name: TID2013_PIPAL_KADID10K_nlogn
+    type: DiffIQATraIQAValDataset
+    all_img_path: ['/home/notebook/data/group/chendu/dataset/IQA/KADID10K/images',
+                   '/home/notebook/data/group/chendu/dataset/IQA/PIPAL/images',
+                   '/home/notebook/data/group/chendu/dataset/IQA/TID2013/images']
+    ThreeAFC_list_path: ['/home/notebook/data/group/chendu/dataset/IQA/KADID10K/Validation/Triplet/Triplet.txt',
+                         '/home/notebook/data/group/chendu/dataset/IQA/PIPAL/Validation/Triplet/Triplet.txt',
+                         '/home/notebook/data/group/chendu/dataset/IQA/TID2013/Validation/Triplet/Triplet.txt']
+    io_backend:
+      type: disk
+    use_hflip: false
+    use_rot: false
+    mean: [0.48145466, 0.4578275, 0.40821073]
+    std: [0.26862954, 0.26130258, 0.27577711]
+    count_percentage: 1.0
+
+
+# network structures
+network_dhead:
+  type: AFINEDhead
+  chns: [3, 768, 768, 768, 768, 768, 768, 768, 768, 768, 768, 768, 768]
+  mean: [0.48145466, 0.4578275, 0.40821073]
+  std: [0.26862954, 0.26130258, 0.27577711]
+
+# path
+path:
+  pretrain_network_g: ~
+  strict_load_g: true
+  resume_state: ~
+
+path_dhead:
+  pretrain_network_dhead: ~
+  strict_load_dhead: True
+  param_key_dhead: params
+
+
+path_CLIP:
+  pretrain_CLIP_path: experiments/pretrained_models/CLIP/ViT-B-32.pt
+  mode: 'finetune'
+  finetune_CLIP_path: experiments/pretrained_models/AFINE_stage1_nlogn/clip_model.pth
+
+
+# training settings
+train:
+  finetune_CLIP: False
+  optim_dhead:
+    type: AdamW
+    lr: !!float 5e-4
+    weight_decay: !!float 1e-3
+    betas: [0.9, 0.99]
+
+  scheduler:
+    type: CosineAnnealingRestartLR
+    periods: [10000, 10000, 10000, 10000]
+    restart_weights: [1, 0.5, 0.5, 0.5]
+    eta_min: !!float 1e-8
+
+  total_iter: 40000
+  warmup_iter: -1
+
+  # losses
+  fidelity_fr12_opt:
+    type: FidelityLoss
+    loss_weight: 1.0
+
+# validation settings
+val:
+  val_freq: !!float 5e2
+  save_img: False
+
+  metrics:
+    Accuracy: # metric name, can be arbitrary
+      type: calculate_all_accuracy
+      delta: 0.0
+
+# logging settings
+logger:
+  print_freq: 100
+  save_checkpoint_freq: !!float 5e2
+  use_tb_logger: true
+  wandb:
+    project: ~
+    resume_id: ~
+
+# dist training settings
+dist_params:
+  backend: nccl
+  port: 29500
