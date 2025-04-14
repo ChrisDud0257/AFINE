@@ -45,15 +45,15 @@ For the original human subjective labels, please download the whole DiffIQA data
 We implemente the learning-to-rank strategy to train A-FINE, so we need a triplet $(x_1, x_2, y)$ as our input, where $x1, x2$ denote two different generated images, $y$ denotes the reference image. Please note that, in DiffIQA, the generated image $x$ only has clear comparison result with $y$, and there is no direct subjective comparison between $(x_1, x_2)$, to make $(x_1, x_2)$ have clear and accurate comparison, we classify the training triplet $(x_1, x_2, y)$ into seven different categories:
 
 
-| Type |        Description         |            Quality Comparison            |
-| :-----: |:--------------------------:| :---------------------------------: |
-| P,S,Y | P: $x_1$, S: $x_2$, Y: $y$ | $x_1 > x_2$, $x_1 > y$, $x_2 = y$ |
-| P,N,Y | P: $x_1$, N: $x_2$, Y: $y$ | $x_1 > x_2$, $x_1 > y$, $x_2 < y$ |
-| P,Y,Y | P: $x_1$, S: $x_2$, Y: $y$ | $x_1 > x_2$, $x_1 > y$, $x_2 = y$ |
-| S,N,Y | S: $x_1$, N: $x_2$, Y: $y$ | $x_1 > x_2$, $x_1 = y$, $x_2 < y$ |
-| N,Y,Y | N: $x_1$, Y: $x_2$, Y: $y$ | $x_1 < x_2$, $x_1 < y$, $x_2 = y$ |
-| S,S,Y | S: $x_1$, S: $x_2$, Y: $y$ | $x_1 = x_2$, $x_1 = y$, $x_2 = y$ |
-| S,Y,Y | S: $x_1$, Y: $x_2$, Y: $y$ | $x_1 = x_2$, $x_1 = y$, $x_2 = y$ |
+| Type |                              Description                               |            Quality Comparison            |
+| :-----: |:----------------------------------------------------------------------:| :---------------------------------: |
+| P,S,Y |                       P: $x_1$, S: $x_2$, Y: $y$                       | $x_1 > x_2$, $x_1 > y$, $x_2 = y$ |
+| P,N,Y |                       P: $x_1$, N: $x_2$, Y: $y$                       | $x_1 > x_2$, $x_1 > y$, $x_2 < y$ |
+| P,Y,Y |   P: $x_1$, S: $x_2$ (here we treat and select $y$ as $x_2$), Y: $y$   | $x_1 > x_2$, $x_1 > y$, $x_2 = y$ |
+| S,N,Y |                       S: $x_1$, N: $x_2$, Y: $y$                       | $x_1 > x_2$, $x_1 = y$, $x_2 < y$ |
+| N,Y,Y |        N: $x_1$, Y: $x_2$ (here we treat and select $y$ as $x_2$), Y: $y$         | $x_1 < x_2$, $x_1 < y$, $x_2 = y$ |
+| S,S,Y | S: $x_1$, S: $x_2$ (here $x_1$ and $x_2$ are different images), Y: $y$ | $x_1 = x_2$, $x_1 = y$, $x_2 = y$ |
+| S,Y,Y |        S: $x_1$, Y: $x_2$ (here we treat and select $y$ as $x_2$)), Y: $y$         | $x_1 = x_2$, $x_1 = y$, $x_2 = y$ |
 
 For example, for any triplet $(x_1, x_2, y)$ triplet:
 If the type is $(P,S,Y)$, $P$ means the selected $x_1$ image is a generated image, and it has better quality than the reference image; $S$ means the selected $x_2$ image is another generated image, and it has similari quality with the reference image; $Y$ means the selected $y$ image is the reference image.
