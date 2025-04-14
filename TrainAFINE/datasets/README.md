@@ -210,7 +210,7 @@ Please note that, the format of labels and construction principle towards the tr
 | S,N,Y | S: $x_1$, N: $x_2$, Y: $y$ | $x_1 > x_2$, $x_1 = y$, $x_2 < y$ |
 | N,Y,Y | N: $x_1$, Y: $x_2$, Y: $y$ | $x_1 < x_2$, $x_1 < y$, $x_2 = y$ |
 
-We don't test $S,Y,Y$ or $S,S,Y$, becase the threshold for prediting the error among $S,S$ $S,Y$, $Y,Y$ is extremely difficult to define.
+We don't test $(S,Y,Y)$ or $(S,S,Y)$, becase the threshold for prediting the error among $(S,S)$, $(S,Y)$, $(Y,Y)$ is extremely difficult to define.
 Please note that, in Table.2 in our main paper, in validation/testing parts, ```Ref < Test``` means the triplet $P,S,Y$, $P,N,Y$ and $P,Y,Y$, while ```Ref > Test``` means the triplet $S,N,Y$ and $N,Y,Y$.
 
 #### 2.1.2 Images
@@ -247,7 +247,7 @@ Please note that, the format of labels and construction principle towards the tr
 | S,N,Y | S: $x_1$, N: $x_2$, Y: $y$ | $x_1 > x_2$, $x_1 = y$, $x_2 < y$ |
 | N,Y,Y | N: $x_1$, Y: $x_2$, Y: $y$ | $x_1 < x_2$, $x_1 < y$, $x_2 = y$ |
 
-We don't test $S,Y,Y$ or $S,S,Y$, becase the threshold for prediting the error among $S,S$ $S,Y$, $Y,Y$ is extremely difficult to define.
+We don't test $(S,Y,Y)$ or $(S,S,Y)$, becase the threshold for prediting the error among $(S,S)$, $(S,Y)$, $(Y,Y)$ is extremely difficult to define.
 Please note that, in Table.2 in our main paper, in validation/testing parts, ```Ref < Test``` means the triplet $P,S,Y$, $P,N,Y$ and $P,Y,Y$, while ```Ref > Test``` means the triplet $S,N,Y$ and $N,Y,Y$.
 
 #### 3.1.2 Images
