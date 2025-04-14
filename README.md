@@ -131,7 +131,7 @@ $$
 
 | Dataset |                                                 Link                                                 |
 |:-------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
-|SRIQA-Bench| [Google Drive](https://drive.google.com/drive/folders/1oRNyjHvjpop2OhurebdFuvisbpys2DRP?usp=sharing) |
+|SRIQA-Bench| [Google Drive](https://drive.google.com/file/d/1jOEFy5FOQvQq4h5abGtHFwqo5SFw10nv/view?usp=sharing) |
 
 
 ### 2.Preliminary
