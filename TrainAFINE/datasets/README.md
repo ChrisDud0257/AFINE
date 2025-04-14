@@ -239,13 +239,13 @@ Please note that, the format of labels and construction principle towards the tr
 
 **One thing you need to pay attention is that we only classfify the testing triplet into five different categories**:
 
-| Type |        Description        |            Quality Comparison            |
-| :-----: | :-------------------------: | :---------------------------------: |
-| P,S,Y | P:$x_1$, S: $x_2$, Y: $y$ | $x_1 > x_2$, $x_1 > y$, $x_2 = y$ |
-| P,N,Y | P:$x_1$, N: $x_2$, Y: $y$ | $x_1 > x_2$, $x_1 > y$, $x_2 < y$ |
-| P,Y,Y |  P:$x_1$, S: $x_2$, Y: $y$  | $x_1 > x_2$, $x_1 > y$, $x_2 = y$ |
-| S,N,Y | S:$x_1$, N: $x_2$, Y: $y$ | $x_1 > x_2$, $x_1 = y$, $x_2 < y$ |
-| N,Y,Y |  N:$x_1$, Y: $x_2$, Y: $y$  | $x_1 < x_2$, $x_1 < y$, $x_2 = y$ |
+| Type |        Description         |            Quality Comparison            |
+| :-----: |:--------------------------:| :---------------------------------: |
+| P,S,Y | P: $x_1$, S: $x_2$, Y: $y$ | $x_1 > x_2$, $x_1 > y$, $x_2 = y$ |
+| P,N,Y | P: $x_1$, N: $x_2$, Y: $y$ | $x_1 > x_2$, $x_1 > y$, $x_2 < y$ |
+| P,Y,Y | P: $x_1$, S: $x_2$, Y: $y$ | $x_1 > x_2$, $x_1 > y$, $x_2 = y$ |
+| S,N,Y | S: $x_1$, N: $x_2$, Y: $y$ | $x_1 > x_2$, $x_1 = y$, $x_2 < y$ |
+| N,Y,Y | N: $x_1$, Y: $x_2$, Y: $y$ | $x_1 < x_2$, $x_1 < y$, $x_2 = y$ |
 
 We don't test $S,Y,Y$ or $S,S,Y$, becase the threshold for prediting the error among $S,S$ $S,Y$, $Y,Y$ is extremely difficult to define.
 Please note that, in Table.2 in our main paper, in validation/testing parts, ```Ref < Test``` means the triplet $P,S,Y$, $P,N,Y$ and $P,Y,Y$, while ```Ref > Test``` means the triplet $S,N,Y$ and $N,Y,Y$.
