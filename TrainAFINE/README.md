@@ -22,7 +22,7 @@ For more installation issues, please refer to the excellent [BasicSR](https://gi
 
 ## 2. Pretrained models
 
-|           Stage           |lDowload|
+|           Stage           |Download|
 |:------------------------:|:---:|
 |CLIP ViT-b-32.pt|[OPENAI](https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt)|
 | Stage 1 |[Google Drive](https://drive.google.com/drive/folders/1TCiecDmQGlw0U0tdOirH97WHXnWFXEqc?usp=drive_link)|
@@ -259,7 +259,7 @@ We provide the testing code for the three different training stages.
 
 ## 1. Pretrained models
 
-|           Stage           |lDowload|
+|           Stage           |Download|
 |:------------------------:|:---:|
 |CLIP ViT-b-32.pt|[OPENAI](https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt)|
 | Stage 1 |[Google Drive](https://drive.google.com/drive/folders/1TCiecDmQGlw0U0tdOirH97WHXnWFXEqc?usp=drive_link)|
