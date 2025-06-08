@@ -5,7 +5,7 @@
 Official PyTorch code for our Paper "Toward Generalized Image Quality Assessment:
 Relaxing the Perfect Reference Quality Assumption" in CVPR 2025.
 
-### [Paper and Supplementary (Arxiv Version)](https://arxiv.org/pdf/2503.11221)
+### [Paper](https://openaccess.thecvf.com/content/CVPR2025/papers/Chen_Toward_Generalized_Image_Quality_Assessment_Relaxing_the_Perfect_Reference_Quality_CVPR_2025_paper.pdf) | [Supplementary](https://openaccess.thecvf.com/content/CVPR2025/supplemental/Chen_Toward_Generalized_Image_CVPR_2025_supplemental.pdf) | [Project Page](https://tianhewu.github.io/A-FINE-page.github.io/) 
 
 > **Toward Generalized Image Quality Assessment:
 Relaxing the Perfect Reference Quality Assumption** <br>
@@ -570,11 +570,12 @@ This project is released under the Apache 2.0 license.
 ## 🌏 Citation
 
 ```bash
-@InProceedings{Chen2025toward,
-    author    = {Chen, Du and Wu, Tianhe and Ma, Kede and Zhang, Lei},
-    title     = {Toward Generalized Image Quality Assessment: Relaxing the Perfect Reference Quality Assumption},
-    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-    year      = {2025}
+@inproceedings{chen2025toward,
+  title={Toward Generalized Image Quality Assessment: Relaxing the Perfect Reference Quality Assumption},
+  author={Chen, Du and Wu, Tianhe and Ma, Kede and Zhang, Lei},
+  booktitle={Proceedings of the 2025 IEEE/CVF Computer Vision and Pattern Recognition Conference},
+  pages={12742--12752},
+  year={2025}
 }
 ```
 
