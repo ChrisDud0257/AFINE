@@ -148,7 +148,7 @@ $$
 
 | Dataset |                                                 Link                                                 |
 |:-------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
-|SRIQA-Bench| [Google Drive](https://drive.google.com/file/d/1jOEFy5FOQvQq4h5abGtHFwqo5SFw10nv/view?usp=sharing) |
+|SRIQA-Bench| [Google Drive](https://drive.google.com/file/d/1LhtLNDl6Jxwi6CPPVjX2_w4zIDRLFfbO/view?usp=sharing) |
 
 
 ### 2.Generation progress of SRIQA-Bench
