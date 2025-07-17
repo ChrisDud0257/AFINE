@@ -268,7 +268,7 @@ Please download the images of traditional IQA datasets from their offical websit
 
 | Dataset |                                                 Link                                                 |
 |:-------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
-|SRIQA-Bench| [Google Drive](https://drive.google.com/drive/folders/1oRNyjHvjpop2OhurebdFuvisbpys2DRP?usp=sharing) |
+|SRIQA-Bench| [Google Drive](https://drive.google.com/file/d/1LhtLNDl6Jxwi6CPPVjX2_w4zIDRLFfbO/view?usp=sharing) |
 
 
 ### 2.Generation progress of SRIQA-Bench
