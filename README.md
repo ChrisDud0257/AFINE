@@ -13,6 +13,7 @@ Relaxing the Perfect Reference Quality Assumption** <br>
 Accepted by CVPR 2025
 
 ## 🆕 News
+(2025-09-15) The **inference** code of A-FINE is intergrated into the excellent [PyIQA](https://github.com/chaofengc/IQA-PyTorch) codeframe. Please find the detailed usage [here](https://github.com/chaofengc/IQA-PyTorch/blob/main/pyiqa/archs/afine_arch.py).
 
 (2025-04-14) We release the DiffIQA dataset.
 
